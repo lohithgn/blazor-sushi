@@ -1,0 +1,88 @@
+@page "/details/{ProductId}"
+@inject AppState State
+
+<div>
+@if (Product != null)
+{
+    <div id="details-top-image"></div>
+    <div id="details">
+        <a id="navigate-prev" href="/details/@PrevProductId"></a>
+        <div id="detail-info">
+            <img class="main-image" src="/images/200/@Product.Image" alt="Selected Product" title="Selected Product" />
+            <div id="description">
+                <h1>@Product.Name</h1>
+                <p>@Product.Description</p>
+                <div id="details-total">
+                    <p id="price-quantity">$@Product.Price</p>
+                    <button class="buy" onclick="@OnAddToCart">Add to cart</button>
+                </div>
+            </div>
+        </div>
+        <div id="nutrition-info">
+            <h2>Nutritional Information</h2>
+            <dl>
+                <dt>Protein</dt>
+                <dd>@Product.Stats.Protein</dd>
+                <dt>Fat (total)</dt>
+                <dd>@Product.Stats.Fat</dd>
+                <dt>Carbohydrate</dt>
+                <dd>@Product.Stats.Fat</dd>
+                <dt>Energy (kJ)</dt>
+                <dd>@Product.Stats.Energy</dd>
+                <dt>Energy (kcal)</dt>
+                <dd>@((Product.Stats.Energy / 4.184).ToString("F4"))</dd>
+                <dt>Sugar</dt>
+                <dd>@Product.Stats.Sugar</dd>
+            </dl>
+        </div>
+        <a id="navigate-next" href="/details/@NextProductId"></a>
+    </div>
+    <div id="details-bottom-image"></div>
+}
+</div>
+
+@functions
+{
+    [Parameter] string ProductId { get; set; }
+
+    int _prodId;
+
+    Product Product;
+
+    protected override void OnParametersSet()
+    {
+        _prodId = int.Parse(ProductId);
+        Product = State.LoadProduct(_prodId);
+    }
+
+    public int NextProductId
+    {
+        get
+        {
+            var nextProdId = _prodId + 1;
+            if(nextProdId == State.Products.Count)
+            {
+                nextProdId = 1;
+            }
+            return nextProdId;
+        }
+    }
+
+    public int PrevProductId
+    {
+        get
+        {
+            var prevProdId = _prodId - 1;
+            if (prevProdId == 0)
+            {
+                prevProdId = State.Products.Count-1;
+            }
+            return prevProdId;
+        }
+    }
+
+    public void OnAddToCart()
+    {
+        State.Cart.Add(Product);
+    }
+}

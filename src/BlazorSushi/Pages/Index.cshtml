@@ -1,0 +1,20 @@
+﻿@page "/"
+@inject AppState State
+
+@if (State.Products != null)
+{
+    <ProductListing Products="@State.Products" OnAdd="OnAddToCart"></ProductListing>
+}
+
+@functions 
+{
+    protected override async Task OnInitAsync()
+    {
+        await State.LoadProducts();
+    }
+
+    void OnAddToCart(Product product)
+    {
+        State.Cart.Add(product);
+    }
+}

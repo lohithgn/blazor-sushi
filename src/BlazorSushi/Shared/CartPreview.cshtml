@@ -1,0 +1,28 @@
+﻿<div id="shop-info" class="@(Items.Count  > 0 ? "active" : "empty")">
+    <ul id="shop-list">
+        @foreach (var item in Items)
+        {
+            <li class="selected-products-list">
+                <a class="view-selected-items" onclick="@(()=>OnRemove(item))">
+                    <img width="100" height="100" src="/images/200/@item.Product.Image" />
+                </a>
+                <span class="selected-image-price">
+                    <span>@item.Quantity</span>x<span>$@item.Product.Price.ToString("F2")</span>
+                </span>
+            </li>
+        }
+    </ul>
+    <div id="shopping-cart">
+        <h3>your<br />shopping cart</h3>
+        <p class="total-price">$@Total.ToString("F2")</p>
+        <a id="empty-cart" href="javascript:void(0)" onclick="@OnEmpty">empty cart</a>
+        <a id="checkout" href="/checkout">checkout</a>
+    </div>
+</div>
+@functions
+{
+    [Parameter] IReadOnlyList<CartItem> Items { get; set; }
+    [Parameter] double Total { get; set; }
+    [Parameter] Action<CartItem> OnRemove { get; set; }
+    [Parameter] Action OnEmpty{ get; set; }
+}

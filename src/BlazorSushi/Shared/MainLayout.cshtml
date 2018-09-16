@@ -1,0 +1,42 @@
+@inherits BlazorLayoutComponent
+@inject AppState State
+<div id="application">
+    <div>
+        <div id="wrapper">
+            <Header CartItemCount="@State.Cart.Count"></Header>
+            @if (State.Cart.Cleared)
+            {
+                <p> Thank you for your order!</p>
+            }
+            <div id="main-section">
+                <section id="pre-content">
+                    <CartPreview Items="@State.Cart.Contents" 
+                                 Total="@State.Cart.Total" 
+                                 OnEmpty="OnEmptyCart" 
+                                 OnRemove="OnRemoveCartItem" ></CartPreview>
+                </section>
+                <section id="content">
+                    @Body
+                </section>
+            </div>
+            <Footer></Footer>
+        </div>
+    </div>
+</div>
+@functions{        
+
+    protected override void OnInit()
+    {
+        State.Cart.OnChange += StateHasChanged;
+    }
+
+    public void OnEmptyCart()
+    {
+        State.Cart.Empty();
+    }
+
+    public void OnRemoveCartItem(CartItem cartItem)
+    {
+        State.Cart.Remove(cartItem);
+    }
+}

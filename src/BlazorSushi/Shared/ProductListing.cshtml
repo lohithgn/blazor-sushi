@@ -1,0 +1,18 @@
+﻿<ul id="main">
+    @foreach (var product in Products)
+    {
+        <li class="products">
+            <a class="view-details" href="/details/@product.Id">
+                <img class="main-image" src="/images/200/@product.Image" alt="@product.Name" title="@product.Name" />
+                <strong>@product.Name</strong>
+                <span class="price"><span>$</span><span>@product.Price</span></span>
+            </a>
+            <button class="add-to-cart" onclick="@(()=>OnAdd(product))">Add to cart</button>
+        </li>
+    }
+</ul>
+@functions
+{
+    [Parameter] IReadOnlyList<Product> Products { get; set; }
+    [Parameter] Action<Product> OnAdd { get; set; }
+}

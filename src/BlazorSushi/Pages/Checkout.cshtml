@@ -1,0 +1,51 @@
+﻿@layout CheckoutLayout
+@page "/checkout"
+@inject AppState  State
+@inject IUriHelper UriHelper 
+
+<div id="checkout-top-image"></div>
+<div id="details-checkout">
+    <h1>Order Details</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in State.Cart.Contents)
+            {
+                <tr>
+                    <td> 
+                        <div class="cart-image-wrapper">
+                            <img src="/images/200/@item.Product.Image" />
+                        </div> 
+                        <span class="product-name">@item.Product.Name</span>
+                    </td>
+                    <td>
+                        <input type="number" data-min="0" data-max="10" bind="@item.Quantity" /></td>
+                    <td><p class="table-price">$@item.Product.Price.ToString("F2")</p></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p id="total-checkout"><em>total:</em><span>$@State.Cart.Total.ToString("F2")</span></p>
+    <a class="cancel-order" href="javascript:void(0)" onclick="@OnEmptyCart">cancel order</a>
+    <button class="order-now" onclick="@OnOrder">order now!</button>
+</div>
+<div id="checkout-bottom-image"></div>
+
+@functions {
+    public void OnEmptyCart()
+    {
+        State.Cart.Empty();
+        UriHelper.NavigateTo("/");
+    }
+    public void OnOrder()
+    {
+        State.Cart.Clear();
+        UriHelper.NavigateTo("/");
+    }
+}
