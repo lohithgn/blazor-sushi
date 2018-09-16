@@ -4,9 +4,16 @@ This repo showcases Blazor version of Kendo UI Sushi Single Page Application. Bl
 # Screenshot
 
 ### Product Listing
+![Product Listing](https://raw.githubusercontent.com/lohithgn/blazor-sushi/master/assets/CartPreview.png "Product Listing")
+
 ### Product Details
+![Product Details](https://raw.githubusercontent.com/lohithgn/blazor-sushi/master/assets/ProductDetails.png "Product Details")
+
 ### Cart Preview
+![Product Details](https://raw.githubusercontent.com/lohithgn/blazor-sushi/master/assets/CartPreview.png "Cart Preview")
+
 ### Checkout
+![Checkout](https://raw.githubusercontent.com/lohithgn/blazor-sushi/master/assets/Checkout.png "Cart Preview")
 
 # Get Blazor 0.5.1
 
