@@ -1,0 +1,25 @@
+{
+  "name": "blazorsushi",
+  "version": "1.0.0",
+  "description": "Blazor Sushi Single Page Application",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lohithgn/blazor-sushi.git"
+  },
+  "keywords": [
+    "blazor",
+    "spa",
+    "sushi",
+    "asp.net",
+    "core"
+  ],
+  "author": "kashyapa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lohithgn/blazor-sushi/issues"
+  },
+  "homepage": "https://github.com/lohithgn/blazor-sushi#readme",
+  "devDependencies": {
+    "surge": "0.20.1"
+  }
+}
