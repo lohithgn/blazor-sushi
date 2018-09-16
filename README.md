@@ -1,5 +1,5 @@
 # Blazor Sushi
-This repo showcases Blazor version of Kendo UI Sushi Single Page Application. Blazor Sushi is a ficticious online etore which sells sushis.
+This repo showcases Blazor version of Kendo UI Sushi Single Page Application. Blazor Sushi is a ficticious online store which sells sushis.
 
 # Live Demo
 Blazor Sushi is hosted on Surge and the live demo can be found here: [Blazor Sushi](https://blazorsushi.surge.sh)
